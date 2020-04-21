@@ -16,7 +16,7 @@
         src: VbiosFiles/amdvbflash-4.65.tar.gz
         dest: /var/tmp/VbiosFiles/
 
-    - name: run the amdvbflash archive gc 0
+    - name: run the amdvbflash archive gc 0 on a server which has 3 GPU identified by 0 1 2
       shell:  /var/tmp/VbiosFiles/amdvbflash-4.65/amdvbflash -ai 0 | grep "Bios Date" && /var/tmp/VbiosFiles/amdvbflash-4.65/amdvbflash -ai 1 | grep "Bios Date" && /var/tmp/VbiosFiles/amdvbflash-4.65/amdvbflash -ai 2 | grep "Bios Date" 
       ignore_errors: true
       register: amdvbflash_output
