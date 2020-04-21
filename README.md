@@ -3,6 +3,7 @@ Repository containing Ansible playbooks for automating Graphic Card VBIOS Update
 
 # Getting Started
 These playbooks have been used to automate updating VBIOS for AMD graphic card using Ansible, from RHEL (Red Hat Enterprise Linux) OS.
+The flashing tool should be available from the manufacturer technical support or website or on the internet. For example, for AMD the linux VBIOS flashing tool is available here: https://github.com/patrickschur/amdvbflash .
 It is required to download the correct vbios file from manufacturer website or https://www.techpowerup.com/vgabios.
 These files needs to be uploaded to the Ansible server, in the relevant directory mentionned in the playbook.
 The playbooks needs to be slighty modified to be adapted to the required setup (paths, file name...).
