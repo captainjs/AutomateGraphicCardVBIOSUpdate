@@ -1,0 +1,31 @@
+---
+- name: Playbook to check AMD VBIOS versions in selected hosts
+  #hosts: groupvbios
+  hosts: test0
+  remote_user: root
+
+  tasks:
+    
+    - name: Create Directory for the flashing tool
+      file:
+        path: /var/tmp/VbiosFiles/amdvbflash-4.65/
+        state: directory
+
+    - name: Extract AMD script
+      unarchive: 
+        src: VbiosFiles/amdvbflash-4.65.tar.gz
+        dest: /var/tmp/VbiosFiles/
+
+    - name: run the amdvbflash archive gc 0
+      shell:  /var/tmp/VbiosFiles/amdvbflash-4.65/amdvbflash -ai 0 | grep "Bios Date" && /var/tmp/VbiosFiles/amdvbflash-4.65/amdvbflash -ai 1 | grep "Bios Date" && /var/tmp/VbiosFiles/amdvbflash-4.65/amdvbflash -ai 2 | grep "Bios Date" 
+      ignore_errors: true
+      register: amdvbflash_output
+
+    - debug:
+        var: amdvbflash_output
+
+    - name: Cleanup the amdvbflash folder
+      file:
+        path: /var/tmp/VbiosFiles/
+        state: absent 
+
